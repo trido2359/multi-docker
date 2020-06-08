@@ -2,12 +2,6 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - docker build -t trido123/react-test -f ./client/Dockerfile.dev ./client
-
-script:
-  - docker run -e CI=true trido123/react-test npm run test
-
 after_success:
   - docker build -t trido123/multi-client ./client
   - docker build -t trido123/multi-nginx ./nginx
