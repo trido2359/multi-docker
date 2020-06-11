@@ -20,4 +20,15 @@ after_success:
   - docker push trido123/multi-nginx
   - docker push trido123/multi-server
   - docker push trido123/multi-worker
-
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "Docker-multi"
+  env: "Docker-multi-test"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-890191265537"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
